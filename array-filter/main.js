@@ -15,10 +15,7 @@ const names = [
 ];
 
 function evenNumbers(value) {
-  for (let i = 0; i < numbers.length; i++) {
-    if (value % 2 !== 0) return false;
-  }
-  return value;
+  return value % 2 === 0;
 }
 
 const filteredIntegers = numbers.filter(evenNumbers);
@@ -32,19 +29,14 @@ const filteredNums = numbers.filter(overFive);
 console.log('filteredNums', filteredNums);
 
 function startWithE(value) {
-  if (value.startsWith('E') === false) return false;
-  return value;
+  return value.startsWith('E');
 }
 
 const filteredNames = names.filter(startWithE);
 console.log('filteredNames', filteredNames);
 
 function haveD(value) {
-  if (value.includes('D') === true) {
-    return value;
-  } if (value.includes('d') === true) {
-    return value;
-  }
+  return value.includes('D') || value.includes('d');
 }
 
 const filteredNames2 = names.filter(haveD);
