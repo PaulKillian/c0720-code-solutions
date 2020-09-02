@@ -25,16 +25,17 @@ console.log('Sum:', sum);
 const multipliedNums = numbers.reduce((allNums, currentNum) => allNums * currentNum, 1);
 console.log('multipliedNums:', multipliedNums);
 
-const balance = account.reduce((addedAccounts, currentAccount) => addedAccounts + currentAccount.amount, 0);
-console.log('Balance:', balance);
-
-const isBalance = account.reduce(function (accumulator, currentValue) {
-  if (currentValue.type === 'withdrawal') {
-    console.log(accumulator);
-    return accumulator + currentValue.amount;
+const isBalance = (addedAmount, currentAmount) => {
+  if (currentAmount.type === 'deposit') {
+    return addedAmount + currentAmount.amount;
   }
-});
+  return addedAmount - currentAmount.amount;
+};
 
-// const composite = traits.reduce((addedTrait, currentTrait) => {
-//   addedTrait[currentTrait.name] = {type: currentTrait.type};
-//   console.log('composite:', addedTrait);
+const balance = account.reduce(isBalance, 0);
+console.log('balance', balance);
+
+const composite = traits.reduce((addedProperties, currentProperty) => {
+  return Object.assign(addedProperties, currentProperty);
+}, {});
+console.log('composite:', composite);
