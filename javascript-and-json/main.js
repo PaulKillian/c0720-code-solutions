@@ -17,12 +17,16 @@ const books = [
   }
 ];
 
+const serialize = JSON.stringify(books);
+
 console.log(JSON.stringify(books));
 
-console.log(typeof books);
+console.log(typeof serialize);
 
 const student = '{"Number ID":1234, "String Name": "student1"}';
 
+const deserialize = JSON.parse(student);
+
 console.log(JSON.parse(student));
 
-console.log(typeof student);
+console.log(typeof deserialize);
