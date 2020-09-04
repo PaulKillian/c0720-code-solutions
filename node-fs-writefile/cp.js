@@ -1,12 +1,13 @@
 const fs = require('fs');
 
-let copiedNote = null;
+let stringData = '';
 
-fs.readFile('note.txt', 'utf8', (err, data) => {
+fs.readFile(process.argv[2], 'utf8', (err, data) => {
+  stringData = data;
   if (err) throw err;
-  copiedNote = data;
 });
 
-fs.writeFile('reminder.txt', copiedNote, err => {
+fs.writeFile(process.argv[3], stringData, 'utf8', err => {
   if (err) throw err;
+  // console.log(process.argv[2]);
 });
