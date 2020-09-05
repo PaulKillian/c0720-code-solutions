@@ -1,8 +1,4 @@
 {
-  "nextID": 4,
-  "notes": {
-    "1": "Learned to add a note1",
-    "2": "Learned to add a note1",
-    "3": "Learned to add a note1"
-  }
+  "nextID": 2,
+  "notes": {}
 }
