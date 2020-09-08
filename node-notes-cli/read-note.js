@@ -1,8 +1,16 @@
 /* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 const fs = require('fs');
 const jsonFile = require('./data.json');
+const allNotes = jsonFile.notes;
 
-fs.readFile('./data.json', 'utf8', (err, data) => {
-  if (err) throw err;
-  console.log(jsonFile.nextID + ':', jsonFile.notes[1]);
-});
+const readNote = () => {
+  for (const id in allNotes) {
+    console.log(`${id}: ${allNotes[id]}`);
+  }
+  fs.readFile('./data.json', 'utf8', (err, data) => {
+    if (err) throw err;
+  });
+};
+
+module.exports = readNote;

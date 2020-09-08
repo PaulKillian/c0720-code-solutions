@@ -1,4 +1,8 @@
 {
-  "nextID": 2,
-  "notes": {}
+  "nextID": 5,
+  "notes": {
+    "2": "Hello, Tim!",
+    "3": "Learned some Node.js",
+    "4": "Learned some Node.js"
+  }
 }
