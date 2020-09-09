@@ -11,6 +11,21 @@ app.use(function (req, res, next) {
       next(err);
     }
   });
+  res.sendFile('./index.html', options, function (err) {
+    if (err) {
+      next(err);
+    }
+  });
+  res.sendFile('./styles.css', options, function (err) {
+    if (err) {
+      next(err);
+    }
+  });
+  res.sendFile('./main.js', options, function (err) {
+    if (err) {
+      next(err);
+    }
+  });
 });
 
 app.listen(3000, () => {
