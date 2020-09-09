@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+const path = require('path');
 
 const students = [
   {
@@ -15,6 +15,13 @@ const students = [
     grade: 9001
   }
 ];
+
+const app = express();
+
+const rootPath = path.join(__dirname, '/public');
+const middleware = express.static(rootPath);
+
+app.use(middleware);
 
 app.get('/api/grades', function (req, res) {
   res.send(students);
