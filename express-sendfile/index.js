@@ -1,31 +1,18 @@
-const express = require('./node_modules/express');
+const express = require('express');
 
 const app = express();
 
-app.use(function (req, res, next) {
-  const options = {
-    root: __dirname
-  };
-  res.sendFile('./hello.txt', options, function (err) {
-    if (err) {
-      next(err);
-    }
-  });
-  res.sendFile('./index.html', options, function (err) {
-    if (err) {
-      next(err);
-    }
-  });
-  res.sendFile('./styles.css', options, function (err) {
-    if (err) {
-      next(err);
-    }
-  });
-  res.sendFile('./main.js', options, function (err) {
-    if (err) {
-      next(err);
-    }
-  });
+app.use((req, res, next) => {
+  const options = { root: __dirname };
+  switch (req.originalUrl) {
+    case '/index.html':
+    case '/styles.css':
+    case '/main.js':
+      res.sendFile(req.originalUrl, options);
+      break;
+    default:
+      next();
+  }
 });
 
 app.listen(3000, () => {
