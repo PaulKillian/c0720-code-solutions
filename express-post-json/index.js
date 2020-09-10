@@ -12,7 +12,7 @@ app.get('/api/grades', (req, res) => {
 
 app.post('/api/grades', (req, res) => {
   res.status(201);
-  req.body['id:'] = `${nextId}`;
+  req.body.id = nextId;
   grades.push(req.body);
   nextId++;
   res.json(grades);
