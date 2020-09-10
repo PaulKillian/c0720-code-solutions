@@ -15,7 +15,7 @@ app.post('/api/grades', (req, res) => {
   req.body.id = nextId;
   grades.push(req.body);
   nextId++;
-  res.json(grades);
+  res.json(req.body);
 });
 
 app.listen(3000, () => {
