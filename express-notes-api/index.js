@@ -5,6 +5,9 @@ const app = express();
 app.use(express.json());
 
 app.get('/api/notes', (req, res) => {
+  if (notes.notes[1] === undefined) {
+    res.json([]);
+  }
   res.json(notes);
 });
 
