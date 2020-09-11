@@ -3,7 +3,8 @@ const allNotes = require('./data.json');
 const badRequest = require('./badrequest.json');
 const notFound = require('./notfound.json');
 const contentRequired = require('./contentrequired.json');
-let nextId = 5;
+const unexpectedError = require('./unexpectederror.json');
+const fs = require('fs');
 const app = express();
 
 app.use(express.json());
@@ -39,15 +40,21 @@ app.get('/api/notes/:id', (req, res) => {
 });
 
 app.post('/api/notes', (req, res) => {
-  if (req.body === {}) {
+  if (Object.keys(req.body).length === 0) {
     res.status(400);
     res.json(contentRequired);
   } else if (req.body !== ' ') {
     res.status(201);
-    req.body.id = nextId;
     allNotes.notes[allNotes.nextId] = req.body;
-    nextId++;
+    allNotes.nextId++;
+    fs.writeFile('data.json', JSON.stringify(allNotes, null, 2), (err, data) => {
+      if (err) throw err;
+    });
+    req.body.id = allNotes.nextId;
     res.json(req.body);
+  } else {
+    res.status(500);
+    res.json(unexpectedError);
   }
 });
 
