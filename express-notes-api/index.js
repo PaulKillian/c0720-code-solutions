@@ -35,7 +35,7 @@ app.get('/api/notes/:id', (req, res) => {
 });
 
 app.post('/api/notes', (req, res, err) => {
-  if (Object.keys(req.body).length === 0) {
+  if (!req.body.content) {
     res.status(400).json({
       error: 'content is a required field'
     });
@@ -90,12 +90,12 @@ app.delete('/api/notes/:id', (req, res, err) => {
 app.put('/api/notes/:id', (req, res) => {
   const paramsId = parseInt(req.params.id, 10);
   const idInNotes = allNotes.notes;
-  if (paramsId <= 0 || Object.keys(req.body).length === 0) {
+  if (!Number.isInteger(paramsId) || paramsId <= 0) {
     res.status(400);
     res.json(contentRequired);
     return;
   }
-  if (paramsId === idInNotes[paramsId].id && req.body !== '' && idInNotes[paramsId] === undefined) {
+  if (paramsId === idInNotes[paramsId].id && !req.body.content && idInNotes[paramsId] === undefined) {
     res.status(404).json({
       error: `cannot find note with id ${paramsId}`
     });
@@ -103,7 +103,7 @@ app.put('/api/notes/:id', (req, res) => {
   }
   idInNotes[paramsId] = req.body;
   req.body.id = paramsId;
-  if (paramsId === idInNotes[paramsId].id && req.body !== '') {
+  if (paramsId === idInNotes[paramsId].id && req.body !== !req.body.content) {
     const json = JSON.stringify(allNotes, null, 2);
     fs.writeFile('data.json', json, err => {
       if (err) {
@@ -111,10 +111,11 @@ app.put('/api/notes/:id', (req, res) => {
         res.status(500).json({
           error: 'An unexpected error occurred.'
         });
+      } else {
+        res.sendStatus(200);
       }
     });
   }
-  res.sendStatus(200);
 });
 
 app.listen(3000, () => {
