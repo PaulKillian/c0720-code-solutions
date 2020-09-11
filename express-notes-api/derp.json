@@ -1,0 +1,137 @@
+{
+  "nextId": 38,
+  "notes": {
+    "0": {},
+    "1": {
+      "id": 1,
+      "content": "The event loop is how a JavaScript runtime pushes asynchronous callbacks onto the stack once the stack is cleared."
+    },
+    "2": {
+      "id": 2,
+      "content": "Prototypal inheritance is how JavaScript objects delegate behavior."
+    },
+    "3": {
+      "id": 3,
+      "content": "In JavaScript, the value of `this` is determined when a function is called; not when it is defined."
+    },
+    "4": {
+      "id": 4,
+      "content": "A closure is formed when a function retains access to variables in its lexical scope."
+    },
+    "5": {
+      "content": "New Note!",
+      "id": 5
+    },
+    "6": {
+      "content": "New Note!",
+      "id": 5
+    },
+    "7": {
+      "content": "New Note!"
+    },
+    "8": {
+      "content": "New Note!",
+      "id": 9
+    },
+    "9": {
+      "content": "New Note!"
+    },
+    "10": {},
+    "11": {},
+    "12": {
+      "content": "New Note!",
+      "id": 13
+    },
+    "13": {
+      "content": "New Note!",
+      "id": 14
+    },
+    "14": {
+      "content": "New Note!",
+      "id": 15
+    },
+    "15": {
+      "content": "New Note!"
+    },
+    "16": {
+      "content": "New Note!"
+    },
+    "17": "[object Object]17",
+    "18": {
+      "content": "New Note!"
+    },
+    "19": {
+      "content": "New Note!"
+    },
+    "20": {
+      "content": "New Note!"
+    },
+    "21": {
+      "content": "New Note!"
+    },
+    "22": {
+      "content": "New Note!",
+      "id": 23
+    },
+    "23": {
+      "content": "New Note!",
+      "id": 24
+    },
+    "24": {
+      "content": "New Note!",
+      "id": 25
+    },
+    "25": {
+      "content": "New Note!"
+    },
+    "26": {
+      "content": "Helllloooo"
+    },
+    "27": {
+      "content": "Helllloooo",
+      "id": 28
+    },
+    "28": {
+      "content": "Helllloooo",
+      "id": 29
+    },
+    "29": {
+      "content": "Helllloooo",
+      "id": 30
+    },
+    "30": {
+      "content": "Helllloooo",
+      "id": 31
+    },
+    "31": {
+      "content": "Helllloooo",
+      "id": 31
+    },
+    "32": {
+      "content": "Helllloooo",
+      "id": 32
+    },
+    "33": {},
+    "34": {
+      "content": "hi",
+      "id": 34
+    },
+    "35": {
+      "content": "hi",
+      "id": 35
+    },
+    "36": {
+      "content": "hi",
+      "id": 36
+    },
+    "37": {
+      "content": "hi",
+      "id": 37
+    },
+    "38": {
+      "id": 38,
+      "content": "hi"
+    },
+    "id": 20
+  }
+}
