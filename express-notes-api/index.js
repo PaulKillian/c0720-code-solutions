@@ -1,7 +1,6 @@
 const express = require('express');
-const allNotes = require('./data');
+const allNotes = require('./data.json');
 const badRequest = require('./badrequest');
-const notFound = require('./notfound');
 const contentRequired = require('./contentrequired');
 const fs = require('fs');
 const app = express();
@@ -94,24 +93,28 @@ app.put('/api/notes/:id', (req, res) => {
   if (paramsId <= 0 || Object.keys(req.body).length === 0) {
     res.status(400);
     res.json(contentRequired);
-  } else {
-    for (const id in idInNotes) {
-      const number = parseInt(id);
-      if (paramsId === number && idInNotes[paramsId].content === undefined) {
-        res.status(404);
-        res.json(notFound);
-      // } else if (paramsId === number && Object.keys(req.body).length !== 0) {
-      //   res.status(500);
-      //   res.json(unexpectedError);
-      } else {
-        idInNotes[paramsId] = req.body;
-        req.body.id = paramsId;
-        fs.writeFile('data.json', JSON.stringify(allNotes, null, 2), (err, data) => {
-          if (err) throw err;
+    return;
+  }
+  if (paramsId === idInNotes[paramsId].id && req.body !== '' && idInNotes[paramsId] === undefined) {
+    res.status(404).json({
+      error: `cannot find note with id ${paramsId}`
+    });
+    return;
+  }
+  idInNotes[paramsId] = req.body;
+  req.body.id = paramsId;
+  if (paramsId === idInNotes[paramsId].id && req.body !== '') {
+    const json = JSON.stringify(allNotes, null, 2);
+    fs.writeFile('data.json', json, err => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({
+          error: 'An unexpected error occurred.'
         });
       }
-    }
+    });
   }
+  res.sendStatus(200);
 });
 
 app.listen(3000, () => {
