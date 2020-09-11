@@ -1,60 +1,116 @@
 const express = require('express');
-const allNotes = require('./data.json');
-const badRequest = require('./badrequest.json');
-const notFound = require('./notfound.json');
-const contentRequired = require('./contentrequired.json');
-const unexpectedError = require('./unexpectederror.json');
+const allNotes = require('./data');
+const badRequest = require('./badrequest');
+const notFound = require('./notfound');
+const contentRequired = require('./contentrequired');
 const fs = require('fs');
 const app = express();
 
 app.use(express.json());
 
 app.get('/api/notes', (req, res) => {
-  if (allNotes.notes[1] === undefined) {
-    res.json([]);
+  const notes = [];
+  for (const id in allNotes.notes) {
+    const note = allNotes.notes[id];
+    notes.push(note);
   }
-  res.json(allNotes);
+  res.json(notes);
 });
 
 app.get('/api/notes/:id', (req, res) => {
-  const paramsId = parseInt(req.params.id);
-  const idInNotes = allNotes.notes;
-  for (const id in idInNotes) {
-    const number = parseInt(id);
-    if (paramsId === number) {
-      res.json(idInNotes[paramsId]);
-    }
+  const paramsId = parseInt(req.params.id, 10);
+  if (!Number.isInteger(paramsId) || paramsId <= 0) {
+    res.status(400).json({
+      error: 'id must be a positive integer'
+    });
+    return;
   }
-  if (paramsId <= 0 || paramsId !== isNaN) {
+  const note = allNotes.notes[paramsId];
+  if (typeof note === 'undefined') {
+    res.status(404).json({
+      error: `cannot find note with id ${paramsId}`
+    });
+    return;
+  }
+  res.json(note);
+});
+
+app.post('/api/notes', (req, res, err) => {
+  if (Object.keys(req.body).length === 0) {
+    res.status(400).json({
+      error: 'content is a required field'
+    });
+    return;
+  }
+  const note = {
+    id: allNotes.nextId,
+    content: req.body.content
+  };
+  allNotes.notes[allNotes.nextId] = note;
+  const json = JSON.stringify(allNotes, null, 2);
+  fs.writeFile('data.json', json, err => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({
+        error: 'An unexpected error occurred.'
+      });
+      return;
+    }
+    res.status(201).json(note);
+  });
+});
+
+app.delete('/api/notes/:id', (req, res, err) => {
+  const paramsId = parseInt(req.params.id, 10);
+  if (!Number.isInteger(paramsId) || paramsId <= 0) {
     res.status(400);
     res.json(badRequest);
+    return;
+  }
+  if (allNotes.notes[paramsId] === undefined) {
+    res.status(404).json({
+      error: `cannot find note with id ${paramsId}`
+    });
+    return;
+  }
+
+  delete allNotes.notes[paramsId];
+  const json = JSON.stringify(allNotes, null, 2);
+  fs.writeFile('data.json', json, err => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({
+        error: 'An unexpected error occurred.'
+      });
+      return;
+    }
+    res.sendStatus(204);
+  });
+});
+
+app.put('/api/notes/:id', (req, res) => {
+  const paramsId = parseInt(req.params.id, 10);
+  const idInNotes = allNotes.notes;
+  if (paramsId <= 0 || Object.keys(req.body).length === 0) {
+    res.status(400);
+    res.json(contentRequired);
   } else {
     for (const id in idInNotes) {
       const number = parseInt(id);
-      if (paramsId !== number) {
+      if (paramsId === number && idInNotes[paramsId].content === undefined) {
         res.status(404);
         res.json(notFound);
+      // } else if (paramsId === number && Object.keys(req.body).length !== 0) {
+      //   res.status(500);
+      //   res.json(unexpectedError);
+      } else {
+        idInNotes[paramsId] = req.body;
+        req.body.id = paramsId;
+        fs.writeFile('data.json', JSON.stringify(allNotes, null, 2), (err, data) => {
+          if (err) throw err;
+        });
       }
     }
-  }
-});
-
-app.post('/api/notes', (req, res) => {
-  if (Object.keys(req.body).length === 0) {
-    res.status(400);
-    res.json(contentRequired);
-  } else if (req.body !== ' ') {
-    res.status(201);
-    allNotes.notes[allNotes.nextId] = req.body;
-    allNotes.nextId++;
-    fs.writeFile('data.json', JSON.stringify(allNotes, null, 2), (err, data) => {
-      if (err) throw err;
-    });
-    req.body.id = allNotes.nextId;
-    res.json(req.body);
-  } else {
-    res.status(500);
-    res.json(unexpectedError);
   }
 });
 
