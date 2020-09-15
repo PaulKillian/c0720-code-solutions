@@ -8,6 +8,6 @@ const CustomButton = props => {
 const rootDiv = document.querySelector('#root');
 
 ReactDom.render(
-  CustomButton(),
+  <CustomButton />,
   rootDiv
 );
