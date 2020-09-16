@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 const defaults = (target, source) => {
   const newTarget = target;
   for (const skey in source) {
@@ -8,3 +9,4 @@ const defaults = (target, source) => {
   }
   return newTarget;
 };
+

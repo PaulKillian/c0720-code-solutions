@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 function pick(source, keys) {
   const picks = {};
   for (let i = 0; i < keys.length; i++) {
@@ -10,3 +11,4 @@ function pick(source, keys) {
   }
   return picks;
 }
+

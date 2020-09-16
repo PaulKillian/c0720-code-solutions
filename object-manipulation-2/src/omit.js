@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 function omit(source, keys) {
   const omits = {};
   for (let i = 0; i < keys.length; i++) {
@@ -11,3 +12,4 @@ function omit(source, keys) {
   }
   return omits;
 }
+
