@@ -1,0 +1,38 @@
+body {
+  font-size: xxx-large;
+}
+
+.container {
+  height: 200px;
+  width: 200px;
+  position: relative;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 97vh;
+}
+
+.icon-dimensions {
+  height: 100px;
+  width: 100px;
+}
+
+.flex-bottom {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  top: 3.5rem;
+  left: 0.8rem;
+}
+
+.watch {
+  height: 200px;
+  width: 200px;
+  border: solid;
+  border-radius: 7rem;
+  position: absolute;
+}
