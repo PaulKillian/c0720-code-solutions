@@ -56,7 +56,7 @@ class StopWatch extends React.Component {
     } else {
       return (
         <div className="container flex">
-          <div className="watch flex cursor" onClick={this.handleReset}>
+          <div className="watch flex cursor">
             <div className="number-dimensions">{this.state.seconds}</div>
           </div>
           <div className="icon-dimensions flex-bottom cursor">
