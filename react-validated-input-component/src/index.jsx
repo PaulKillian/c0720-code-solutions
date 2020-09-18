@@ -5,17 +5,15 @@ class Validator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isValid: false,
+      value: '',
       passLength: 0
     };
     this.passwordLength = this.passwordLength.bind(this);
   }
 
-  passwordLength() {
+  passwordLength(event) {
+    this.setState({ value: event.target.value });
     this.setState({ passLength: this.state.passLength + 1 });
-    if (this.state.passLength === 7) {
-      this.render();
-    }
   }
 
   render() {
@@ -24,7 +22,9 @@ class Validator extends React.Component {
         <>
           <form className="flex-form">
             <label>Password</label>
-            <input type="password" name="user_password" onChange={this.passwordLength}></input>
+            <input type="password" name="user_password"
+              value={this.state.value}
+              onChange={this.passwordLength}></input>
           </form>
           <div className="flex-errors">
             <p>A password is required</p>
@@ -37,7 +37,9 @@ class Validator extends React.Component {
         <>
           <form className="flex-form">
             <label>Password</label>
-            <input type="password" name="user_password" onChange={this.passwordLength}></input>
+            <input type="password" name="user_password"
+              value={this.state.value}
+              onChange={this.passwordLength}></input>
           </form>
           <div className="flex-errors">
             <p className="passShort">Your password is too short</p>
