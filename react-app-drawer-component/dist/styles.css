@@ -1,0 +1,46 @@
+body {
+  height: 97vh;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  position: relative;
+}
+
+.menu-col {
+  height: 100vh;
+  width: 20%;
+}
+
+.right-col {
+  background-color: grey;
+  height: 100vh;
+  width: 100%;
+  margin-left: 5px;
+}
+
+.icon-margin {
+  margin-top: 25px;
+  margin-left: 15px;
+}
+
+.menu-shadow {
+  position: absolute;
+  background-color: #e2d7d7;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+p,
+.pointer,
+.icon-margin {
+  cursor: pointer;
+}
+
+p,
+h3 {
+  margin-left: 10px;
+}

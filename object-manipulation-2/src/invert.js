@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 function invert(source) {
   const picks = {};
   for (const foo in source) {
@@ -6,3 +7,4 @@ function invert(source) {
   }
   return picks;
 }
+

@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 const defaults = (target, source) => {
   const newTarget = target;
   const compareKeys = Object.keys(target);
@@ -20,3 +21,4 @@ const defaults = (target, source) => {
   }
   return newTarget;
 };
+
