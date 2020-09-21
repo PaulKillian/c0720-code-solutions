@@ -39,14 +39,16 @@ class App extends React.Component {
      * And specify the "Content-Type" header as "application/json"
      */
     fetch('/api/todos', {
-      method: 'post',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newTodo)
     }).then(res => res.json())
-      .then(addedTodos => this.setState(this.state.todos))
-      .catch(error => console.error(error));
+      .then(todo => {
+        const newTodos = this.state.todos.concat(todo);
+        this.setState({ todos: newTodos });
+      }).catch(error => console.error(error));
   }
 
   toggleCompleted(todoId) {
@@ -61,28 +63,30 @@ class App extends React.Component {
      * TIP: Be sure to SERIALIZE the updates in the body with JSON.stringify()
      * And specify the "Content-Type" header as "application/json"
      */
-    let status = null;
-    let stateStatusTodo = null;
     let index = 0;
-    let stateAllTodos = [];
     for (let i = 0; i < this.state.todos.length; i++) {
       if (this.state.todos[i].id === todoId) {
         index = i;
-        status = this.state.todos[i].isCompleted;
-        stateStatusTodo = this.state.todos[i];
-        stateStatusTodo.isCompleted = !status;
-        stateAllTodos = this.state.todos;
-        stateAllTodos[index] = stateStatusTodo;
+        break;
       }
     }
-
+    const targetTodo = this.state.todos[index];
+    const currentIsCompleted = targetTodo.isCompleted;
+    const update = {
+      isCompleted: !currentIsCompleted
+    };
     fetch(`api/todos/${todoId}`, {
-      method: 'patch',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(todoId)
-    }).then(replace => this.setState(stateAllTodos));
+      body: JSON.stringify(update)
+    }).then(res => res.json())
+      .then(replace => {
+        const newTodos = this.state.todos.slice();
+        newTodos[index] = replace;
+        this.setState({ todos: newTodos });
+      });
   }
 
   render() {

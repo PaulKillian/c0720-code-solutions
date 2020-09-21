@@ -3,17 +3,17 @@
     {
       "id": 1,
       "task": "Learn to code.",
-      "isCompleted": false
+      "isCompleted": true
     },
     {
       "id": 3,
       "task": "Build projects.",
-      "isCompleted": false
+      "isCompleted": true
     },
     {
       "id": 7,
       "task": "Get a job.",
-      "isCompleted": false
+      "isCompleted": true
     },
     {
       "id": 8
@@ -38,12 +38,12 @@
     },
     {
       "task": "b",
-      "isCompleted": false,
+      "isCompleted": true,
       "id": 15
     },
     {
       "task": "s",
-      "isCompleted": false,
+      "isCompleted": true,
       "id": 16
     },
     {
@@ -659,6 +659,41 @@
       "task": "new todo 1",
       "isCompleted": false,
       "id": 53
+    },
+    {
+      "task": "hello",
+      "isCompleted": false,
+      "id": 54
+    },
+    {
+      "task": "no",
+      "isCompleted": false,
+      "id": 55
+    },
+    {
+      "task": "new",
+      "isCompleted": false,
+      "id": 56
+    },
+    {
+      "task": "new todo",
+      "isCompleted": false,
+      "id": 57
+    },
+    {
+      "task": "hello",
+      "isCompleted": false,
+      "id": 58
+    },
+    {
+      "task": "helllllo",
+      "isCompleted": false,
+      "id": 59
+    },
+    {
+      "task": "hellllllllllllllllo",
+      "isCompleted": false,
+      "id": 60
     }
   ]
 }
