@@ -3,16 +3,17 @@ function unique(array) {
   const result = [];
   const compare = [];
   const duplicates = [];
-  for (let i = 0; i < array.length; i++) {
-    compare.push(array[i]);
-  }
-  for (let x = 0; x < array.length; x++) {
-    for (let c = 1; c < compare.length; c++) {
-      if (array[x] === compare[c]) {
-        duplicates.push(array[x]);
-      } else {
-        result.push(array[x]);
-        c += c.length;
+  for (let c = 0; c < array.length; c++) {
+    for (let x = 1; x < array.length; x++) {
+      if (c === x) {
+        duplicates.push(array[c]);
+        x++;
+      }
+      if (array[c] !== array.length - 1) {
+        result.push(array[c]);
+        x++;
+      } else if (array[c] === array[x]) {
+        compare.push(array[c]);
       }
     }
   }

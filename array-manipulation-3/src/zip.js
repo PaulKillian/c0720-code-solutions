@@ -5,7 +5,8 @@ function zip(first, second) {
     for (let x = 0; x < second.length; x++) {
       result.push([]);
       for (let c = 0; c < result.length; c++) {
-        if (i === first.length) { return result; }
+        if (first.length > second.length && i === first.length - 1) { return result; }
+        if (result[i] === undefined) { return result; }
         result[i].push(first[i]);
         result[i].push(second[x]);
         i++;
@@ -13,4 +14,5 @@ function zip(first, second) {
       }
     }
   }
+  return result;
 }
