@@ -64,23 +64,25 @@ class App extends React.Component {
     let status = null;
     let stateStatusTodo = null;
     let index = 0;
+    let stateAllTodos = [];
     for (let i = 0; i < this.state.todos.length; i++) {
       if (this.state.todos[i].id === todoId) {
         index = i;
         status = this.state.todos[i].isCompleted;
         stateStatusTodo = this.state.todos[i];
         stateStatusTodo.isCompleted = !status;
+        stateAllTodos = this.state.todos;
+        stateAllTodos[index] = stateStatusTodo;
       }
     }
 
-    fetch(`/api/todos/${todoId}`, {
+    fetch(`api/todos/${todoId}`, {
       method: 'patch',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(todoId)
-    }).then(res => res.json(todoId))
-      .then(replace => this.setState(this.state.todos[index]));
+    }).then(replace => this.setState(stateAllTodos));
   }
 
   render() {
