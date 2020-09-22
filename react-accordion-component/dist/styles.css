@@ -1,0 +1,11 @@
+.hidden {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+p {
+  font-size: xx-small;
+}
