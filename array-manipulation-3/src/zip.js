@@ -1,16 +1,19 @@
 /* eslint-disable no-unused-vars */
 function zip(first, second) {
-  const result = [[]];
+  const result = [];
+  first.forEach(x => {
+    const array = [];
+    array.push(x);
+    result.push(array);
+  });
   for (let i = 0; i < result.length; i++) {
-    first.forEach(x => {
-      result[i].push(x);
-      const array = [];
-      result[i].push(array);
-    });
+    for (let x = 0; x < second.length; i++) {
+      if (i === result.length) {
+        return result;
+      } else {
+        result[i].push(second[i]);
+      }
+    }
   }
-  for (let i = 0; i < result.length; i++) {
-    second.forEach(x => {
-      result[i].push(x);
-    });
-  }
+  return result;
 }
