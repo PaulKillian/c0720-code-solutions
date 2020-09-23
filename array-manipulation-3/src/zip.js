@@ -8,6 +8,9 @@ function zip(first, second) {
   });
   for (let i = 0; i < result.length; i++) {
     for (let x = 0; x < second.length; i++) {
+      if (i === second.length && first.length > second.length) {
+        result.pop();
+      }
       if (i === result.length) {
         return result;
       } else {
