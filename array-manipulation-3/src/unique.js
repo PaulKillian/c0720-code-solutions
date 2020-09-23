@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
-function unique(first, second) {
-  const combined = first.concat(second);
+function unique(array) {
   const nonDups = [];
-  combined.forEach(dup => {
+  array.forEach(dup => {
     if (!nonDups.includes(dup)) {
       nonDups.push(dup);
     }
