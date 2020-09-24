@@ -1,0 +1,34 @@
+.outer-switch-bg-color,
+.outer-switch-bg-color-right {
+  background-color: lightgray;
+  height: 100px;
+  width: 200px;
+  border: solid;
+  border-radius: 3rem;
+  position: relative;
+}
+
+.outer-switch-bg-color-right {
+  background-color: rgb(31, 117, 89);
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 97vh;
+}
+
+.flex-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.switch-bg-color {
+  background-color: white;
+  height: 100px;
+  width: 100px;
+  border: solid;
+  border-radius: 3rem;
+  position: absolute;
+}

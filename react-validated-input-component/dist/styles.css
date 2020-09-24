@@ -1,0 +1,55 @@
+.flex-form {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+}
+
+.flex-success {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  position: relative;
+  bottom: 19px;
+  right: 3px;
+  height: 0;
+  width: 12%;
+}
+
+.flex-errors {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  bottom: 17px;
+  right: 3px;
+  height: 0;
+}
+
+i,
+p {
+  color: red;
+}
+
+.check-color {
+  color: green;
+}
+
+p {
+  position: relative;
+  top: 3px;
+  font-size: 12px;
+}
+
+.passShort {
+  position: relative;
+  bottom: 12px;
+  font-size: 12px;
+}
+
+.xIcon {
+  margin-left: 7px;
+}
+
+.xIcon2 {
+  position: relative;
+  left: 25px;
+}
