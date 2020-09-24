@@ -3,5 +3,5 @@ select "firstName",
        "amount"
 	from "customers"
 	join "payments" using ("customerId")
-   where "amount" > 10.99
+  order by "amount" desc
 	limit 10
