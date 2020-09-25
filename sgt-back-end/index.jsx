@@ -16,13 +16,12 @@ app.get('/api/grades', (req, res, next) => {
   db.query(sql)
     .then(result => {
       const grades = result.rows;
-      if (!grades) {
-        res.status(500).json({
-          error: 'We are currently unable to handle your reguest'
-        });
-      } else {
-        res.json(grades);
-      }
+      res.json(grades);
+    }).catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'We are currently unable to handle your reguest'
+      });
     });
 });
 
@@ -37,17 +36,12 @@ returning *
     res.status(400).json({
       error: 'Please provide a valid grade'
     });
+    return;
   }
   db.query(sql, params)
     .then(result => {
       const grade = result.rows[0];
-      if (grade) {
-        res.status(201).json({
-          success: 'Grade successfully added.'
-        });
-      } else {
-        res.json(grade);
-      }
+      res.json(grade);
     }).catch(err => {
       console.error(err);
       res.status(500).json({
@@ -80,8 +74,9 @@ returning *
   }
   db.query(sql, params)
     .then(result => {
+      const grades = result.rows;
       const grade = result.rows[0];
-      if (!grade) {
+      if (grades.length === 0) {
         res.status(404).json({
           error: `Cannot find grade with gradeId ${gradeId}`
         });
@@ -106,18 +101,23 @@ app.delete('/api/grades/:gradeId', (req, res) => {
   }
   const sql = `
 delete from "grades"
-where "gradeId" = $1
+where "gradeId" = $1,
+"name" = $2,
+"course" = $3,
+"grade" = $4
 returning *
 `;
-  const params = [gradeId];
+  if (!req.body.name || !req.body.course || !req.body.grade) {
+    res.status(400).json({
+      error: 'Please provide a valid grade'
+    });
+    return;
+  }
+  const params = [gradeId, req.body.name, req.body.course, req.body.grade];
   db.query(sql, params)
     .then(result => {
       const grades = result.rows;
-      if (!grades) {
-        res.status(400).json({
-          error: 'Please provide a valid grade'
-        });
-      } else if (grades.length === 0) {
+      if (grades.length === 0) {
         res.status(404).json({
           error: `Cannot find grade with gradeId ${gradeId}`
         });
